@@ -69,5 +69,29 @@
         </tr>
 
     </table>
+
+    <script>
+        // Function to change color of specific table entries based on text content
+        function changeColorBasedOnValue() {
+            var rows = document.querySelectorAll("#ridesTable tr"); // Select all table rows
+
+            // Loop through each row (skip the header row)
+            for (var i = 1; i < rows.length; i++) {
+                var cells = rows[i].getElementsByTagName("td");
+
+                // Loop through each cell in the row
+                for (var j = 0; j < cells.length; j++) {
+                    // Check if the value in the "Status" column is "Confirmed"
+                    if (cells[j].innerText === "Confirmed") {
+                        // Change background color to green for "Confirmed" status
+                        cells[j].style.backgroundColor = "lightgreen"; // You can customize this color
+                    }
+                }
+            }
+        }
+
+        // Call the function to apply the changes after the page loads
+        window.onload = changeColorBasedOnValue;
+    </script>
 </body>
 </html>
