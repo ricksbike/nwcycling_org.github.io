@@ -16,6 +16,7 @@
 
         /* Styling for the top banner image */
         #topImage {
+            position: relative; /* Set relative positioning for the container */
             width: 100%; /* Full width */
             height: 33vh; /* 33% of the viewport height */
             background-image: url('images/banner.jpg'); /* Set the image as a background */
@@ -23,6 +24,18 @@
             background-repeat: no-repeat; /* Prevent the image from repeating */
             background-position: 0 50%; /* Start position */
             animation: panImage 10s infinite linear; /* Apply animation */
+        }
+
+        .bannerText {
+            position: absolute; /* Position the text absolutely within the container */
+            top: 50%; /* Center vertically */
+            left: 50%; /* Center horizontally */
+            transform: translate(-50%, -50%); /* Adjust for perfect centering */
+            color: white; /* Set text color to white for contrast */
+            font-size: 2rem; /* Adjust font size as needed */
+            font-weight: bold; /* Make the text bold */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add a shadow for better readability */
+            text-align: center; /* Center-align the text */
         }
 
         /* Keyframes for the panning effect */
@@ -56,7 +69,7 @@
             background-color: #d3d3d3; /* Light gray background for table headers */
             color: black; /* Ensure header text is black */
             height: auto; /* Allow the height to adjust based on content */
-            padding: 5px 10px; /* Reduce padding to make the headers shorter */
+            padding: 3px 5px; /* Reduce padding to make the headers shorter */
             word-wrap: break-word; /* Allow wrapping of text inside headers */
             white-space: normal; /* Ensure text can wrap onto new lines */
             text-align: center; /* Center-align text for better look */
@@ -94,16 +107,15 @@
 </head>
 <body>
     <!-- Top banner image -->
-    <div id="topImage"></div>
+    <div id="topImage">
+        <div class="bannerText">Welcome to NW Cycling</div>
+    </div>
 
     <!-- Main heading -->
     <h1>Welcome to nwcycling.org</h1>
 
     <!-- Introductory paragraph -->
     <p>Clubs and organizations of the Pacific Northwest have gotten together to list their rides in a central location for riders.</p>
-
-    <!-- Subheading for the table -->
-    <h2>Organized Rides</h2>
 
     <!-- Table to display ride data -->
     <table id="ridesTable">
