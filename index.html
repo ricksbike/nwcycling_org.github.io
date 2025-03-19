@@ -47,13 +47,13 @@
     <table>
         <tr>
             <th>Ride Name</th>
-            <th>Date</th>
-            <th>Deadline</th>
-            <th>Location</th>
-            <th>Type</th>
+            <th>Start Date</th>
+            <th>Registration Deadline</th>
+            <th>Start Location</th>
+            <th>Ride Type</th>
             <th>Longest Route (miles)</th>
             <th>Elevation Gain (feet)</th>
-            <th>Status</th>
+            <th>Ride Status</th>
             <th>Organization</th>   
         </tr>
         <tr>
@@ -85,6 +85,10 @@
                     if (cells[j].innerText === "Confirmed") {
                         // Change background color to green for "Confirmed" status
                         cells[j].style.backgroundColor = "lightgreen"; // You can customize this color
+                    }
+                    if (cells[j].innerText === "Planned") {
+                        // Change background color to green for "Confirmed" status
+                        cells[j].style.backgroundColor = "yellow"; // You can customize this color
                     }
                 }
             }
