@@ -12,4 +12,18 @@
         "organization": "Redmond Cycling Club",
         "organizationLink": "https://redmondcycling.club"
     }
+{
+        "rideName": "RAMROD2",
+        "rideNameLink": "https://redmondcycling.club/RAMROD",
+        "startDate": "July 31, 2025",
+        "registrationDeadline": "March 25, 2025",
+        "startLocation": "Enumclaw, Washington",
+        "rideType": "Tarmac",
+        "longestRoute": 151,
+        "elevationGain": 10001,
+        "rideStatus": "PLanned",
+        "organization": "Redmond Cycling Club",
+        "organizationLink": "https://redmondcycling.club"
+    }
+
 ]
