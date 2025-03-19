@@ -80,16 +80,16 @@
 
                 // Add table cells for each piece of data
                 row.innerHTML = `
-                    <td><a href="${ride.rideNameLink}">${ride.rideName}</a></td>
-                    <td>${ride.startDate}</td>
-                    <td>${ride.registrationDeadline}</td>
-                    <td>${ride.startLocation}</td>
-                    <td>${ride.rideType}</td>
-                    <td>${ride.longestRoute}</td>
-                    <td>${ride.elevationGain}</td>
-                    <td>${ride.rideStatus}</td>
-                    <td><a href="${ride.organizationLink}">${ride.organization}</a></td>
-                `;
+    <td><a href="${ride.rideNameLink}" target="_blank">${ride.rideName}</a></td>
+    <td>${ride.startDate}</td>
+    <td>${ride.registrationDeadline}</td>
+    <td>${ride.startLocation}</td>
+    <td>${ride.rideType}</td>
+    <td>${ride.longestRoute}</td>
+    <td>${ride.elevationGain}</td>
+    <td>${ride.rideStatus}</td>
+    <td><a href="${ride.organizationLink}" target="_blank">${ride.organization}</a></td>
+`;
 
                 // Append the row to the table body
                 tableBody.appendChild(row);
