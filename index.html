@@ -3,70 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>nwcycling.org </title>
+    <title>nwcycling.org</title>
 
-   <style>
+    <style>
+        /* General body styling */
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
             background-color: black; /* Set the background color to black */
             color: white; /* Set text color to white for better contrast */
         }
+
+        /* Styling for the top banner image */
         #topImage {
             width: 100%; /* Full width */
             height: 33vh; /* 33% of the viewport height */
             object-fit: cover; /* Scale the image without distortion */
             display: block;
         }
+
+        /* Table styling */
         table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
+            width: 100%; /* Full width */
+            border-collapse: collapse; /* Remove gaps between table borders */
+            margin-top: 20px; /* Add space above the table */
+            background-color: white; /* Set the table background to white */
+            color: black; /* Set the text color to black for contrast */
         }
+
+        /* Styling for table cells */
         th, td {
-            padding: 10px;
+            padding: 10px; /* Add padding inside cells */
             border: 2px solid #000; /* Set a thicker border with a bold color */
-            text-align: left;
+            text-align: left; /* Default alignment for text */
         }
+
+        /* Styling for table headers */
         th {
-            background-color: #d3d3d3;
+            background-color: #d3d3d3; /* Light gray background for table headers */
+            color: black; /* Ensure header text is black */
             height: 100px; /* Set the height of the table header */
-            word-wrap: break-word; /* Allow wrapping of text inside th */
-            white-space: normal;  /* Make sure the text can wrap onto new lines */
-            text-align: center;   /* Center-align text for better look */
+            word-wrap: break-word; /* Allow wrapping of text inside headers */
+            white-space: normal; /* Ensure text can wrap onto new lines */
+            text-align: center; /* Center-align text for better look */
+        }
+
+        /* Styling for table data cells */
+        td {
+            background-color: white; /* Ensure table cells have a white background */
+            color: black; /* Ensure table cell text is black */
         }
 
         /* Override alignment for the Ride Name column */
         th:nth-child(1), td:nth-child(1) {
-        text-align: left; /* Align text to the left */
-}
+            text-align: left; /* Align text to the left */
+        }
+
         /* Center-align text for specific columns */
         th:nth-child(2), td:nth-child(2), /* Start Date */
         th:nth-child(3), td:nth-child(3), /* Registration Deadline */
-        th:nth-child(8), td:nth-child(8)  /* Ride Status */ {
-        text-align: center;
-}
+        th:nth-child(8), td:nth-child(8) /* Ride Status */ {
+            text-align: center;
+        }
 
         /* Set specific column widths for each column */
-        th:nth-child(1), td:nth-child(1) { width: 14%; }  /* Ride Name */
-        th:nth-child(2), td:nth-child(2) { width: 8%; }  /* Start Date */
-        th:nth-child(3), td:nth-child(3) { width: 8%; }  /* Registratio Deadline */
-        th:nth-child(4), td:nth-child(4) { width: 12%; }  /* Start Location */
-        th:nth-child(5), td:nth-child(5) { width: 8%; }  /* Ride Type */
-        th:nth-child(6), td:nth-child(6) { width: 8%; }  /* Longest Route  */
-        th:nth-child(7), td:nth-child(7) { width: 8%; }  /* Elevation Gain */
-        th:nth-child(8), td:nth-child(8) { width: 10%; }  /* Ride Status */
-        th:nth-child(9), td:nth-child(9) { width: 14%; }  /* Organization */
+        th:nth-child(1), td:nth-child(1) { width: 14%; } /* Ride Name */
+        th:nth-child(2), td:nth-child(2) { width: 8%; } /* Start Date */
+        th:nth-child(3), td:nth-child(3) { width: 8%; } /* Registration Deadline */
+        th:nth-child(4), td:nth-child(4) { width: 12%; } /* Start Location */
+        th:nth-child(5), td:nth-child(5) { width: 8%; } /* Ride Type */
+        th:nth-child(6), td:nth-child(6) { width: 8%; } /* Longest Route */
+        th:nth-child(7), td:nth-child(7) { width: 8%; } /* Elevation Gain */
+        th:nth-child(8), td:nth-child(8) { width: 10%; } /* Ride Status */
+        th:nth-child(9), td:nth-child(9) { width: 14%; } /* Organization */
     </style>
 </head>
 <body>
+    <!-- Top banner image -->
     <img id="topImage" src="images/banner.jpg" alt="Top Banner" />
+
+    <!-- Main heading -->
     <h1>Welcome to nwcycling.org</h1>
-<p> Clubs and organizations of the Pacific Northwest have gotten together to list their rides in a central location for riders.</p>    
+
+    <!-- Introductory paragraph -->
+    <p>Clubs and organizations of the Pacific Northwest have gotten together to list their rides in a central location for riders.</p>
+
+    <!-- Subheading for the table -->
     <h2>Organized Rides</h2>
+
+    <!-- Table to display ride data -->
     <table id="ridesTable">
         <thead>
             <tr>
+                <!-- Table headers with sorting functionality -->
                 <th scope="col" onclick="sortTable(0)">Ride Name</th>
                 <th scope="col" onclick="sortTable(1)">Start Date</th>
                 <th scope="col" onclick="sortTable(2)">Registration Deadline</th>
@@ -83,89 +112,98 @@
         </tbody>
     </table>
 
-<script>
-    // Function to populate the table with data from the JSON file
-    async function populateTable() {
-        try {
-            const response = await fetch('ridesData.json'); // Fetch the JSON file
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+    <script>
+        // Function to populate the table with data from the JSON file
+        async function populateTable() {
+            try {
+                const response = await fetch('ridesData.json'); // Fetch the JSON file
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const rides = await response.json(); // Parse the JSON data
+
+                const tableBody = document.querySelector('#ridesTable tbody'); // Select the table body
+
+                // Loop through each ride and create a table row
+                rides.forEach(ride => {
+                    const row = document.createElement('tr'); // Create a new row
+
+                    // Add table cells for each piece of data
+                    row.innerHTML = `
+                        <td><a href="${ride.rideNameLink}" target="_blank">${ride.rideName}</a></td>
+                        <td>${ride.startDate}</td>
+                        <td>${ride.registrationDeadline}</td>
+                        <td>${ride.startLocation}</td>
+                        <td>${ride.rideType}</td>
+                        <td>${ride.longestRoute}</td>
+                        <td>${ride.elevationGain}</td>
+                        <td>${ride.rideStatus}</td>
+                        <td><a href="${ride.organizationLink}" target="_blank">${ride.organization}</a></td>
+                    `;
+
+                    // Append the row to the table body
+                    tableBody.appendChild(row);
+                });
+
+                // Call the function to apply color changes based on status
+                changeColorBasedOnValue();
+            } catch (error) {
+                console.error("Error loading table data:", error);
             }
-            const rides = await response.json(); // Parse the JSON data
+        }
 
-            const tableBody = document.querySelector('#ridesTable tbody'); // Select the table body
+        // Function to change color of specific table entries based on text content
+        function changeColorBasedOnValue() {
+            const rows = document.querySelectorAll("#ridesTable tr"); // Select all table rows
 
-            rides.forEach(ride => {
-                const row = document.createElement('tr'); // Create a new row
+            // Loop through each row (skip the header row)
+            for (let i = 1; i < rows.length; i++) {
+                const statusCell = rows[i].getElementsByTagName("td")[7]; // Target the "Status" column (index 7)
+                if (statusCell) {
+                    if (statusCell.innerText === "Confirmed") {
+                        statusCell.style.backgroundColor = "lightgreen"; // Customize this color
+                    }
+                    if (statusCell.innerText === "Planned") {
+                        statusCell.style.backgroundColor = "yellow"; // Customize this color
+                    }
+                }
+            }
+        }
 
-                // Add table cells for each piece of data
-                row.innerHTML = `
-                <td><a href="${ride.rideNameLink}" target="_blank">${ride.rideName}</a></td>
-                <td>${ride.startDate}</td>
-                <td>${ride.registrationDeadline}</td>
-                <td>${ride.startLocation}</td>
-                <td>${ride.rideType}</td>
-                <td>${ride.longestRoute}</td>
-                <td>${ride.elevationGain}</td>
-                <td>${ride.rideStatus}</td>
-                <td><a href="${ride.organizationLink}" target="_blank">${ride.organization}</a></td>
-`;
+        // Function to sort the table by a specific column
+        function sortTable(columnIndex) {
+            const table = document.getElementById("ridesTable");
+            const tbody = table.tBodies[0];
+            const rows = Array.from(tbody.rows);
 
-                // Append the row to the table body
-                tableBody.appendChild(row);
+            // Determine the sort direction (ascending or descending)
+            const isAscending = table.getAttribute("data-sort-direction") !== "asc";
+            table.setAttribute("data-sort-direction", isAscending ? "asc" : "desc");
+
+            // Sort rows based on the content of the clicked column
+            rows.sort((a, b) => {
+                const cellA = a.cells[columnIndex].innerText.trim();
+                const cellB = b.cells[columnIndex].innerText.trim();
+
+                // Handle numeric sorting
+                if (!isNaN(cellA) && !isNaN(cellB)) {
+                    return isAscending ? cellA - cellB : cellB - cellA;
+                }
+
+                // Handle string sorting
+                return isAscending
+                    ? cellA.localeCompare(cellB)
+                    : cellB.localeCompare(cellA);
             });
 
-            // Call the function to apply color changes based on status
-            changeColorBasedOnValue();
-        } catch (error) {
-            console.error("Error loading table data:", error);
+            // Append the sorted rows back to the table body
+            rows.forEach(row => tbody.appendChild(row));
         }
-    }
 
-    // Function to change color of specific table entries based on text content
-    function changeColorBasedOnValue() {
-        var rows = document.querySelectorAll("#ridesTable tr"); // Select all table rows
-
-        // Loop through each row (skip the header row)
-        for (var i = 1; i < rows.length; i++) {
-            var statusCell = rows[i].getElementsByTagName("td")[7]; // Target the "Status" column (index 7)
-            if (statusCell) {
-                if (statusCell.innerText === "Confirmed") {
-                    statusCell.style.backgroundColor = "lightgreen"; // Customize this color
-                }
-                if (statusCell.innerText === "Planned") {
-                    statusCell.style.backgroundColor = "yellow"; // Customize this color
-                }
-            }
-        }
-    }
-
-    // Function to sort the table by a specific column
-    function sortTable(columnIndex) {
-        const table = document.getElementById("ridesTable");
-        const tbody = table.tBodies[0];
-        const rows = Array.from(tbody.rows);
-
-        const isAscending = table.getAttribute("data-sort-direction") !== "asc";
-        table.setAttribute("data-sort-direction", isAscending ? "asc" : "desc");
-
-        rows.sort((a, b) => {
-            const cellA = a.cells[columnIndex].innerText.trim();
-            const cellB = b.cells[columnIndex].innerText.trim();
-
-            if (!isNaN(cellA) && !isNaN(cellB)) {
-                return isAscending ? cellA - cellB : cellB - cellA;
-            }
-
-            return isAscending
-                ? cellA.localeCompare(cellB)
-                : cellB.localeCompare(cellA);
+        // Use DOMContentLoaded event to make sure the script runs after the HTML content is loaded
+        document.addEventListener("DOMContentLoaded", function () {
+            populateTable(); // Populate the table
         });
-
-        rows.forEach(row => tbody.appendChild(row));
-    }
-    // Use DOMContentLoaded event to make sure the script runs after the HTML content is loaded
-    document.addEventListener("DOMContentLoaded", function () {
-        populateTable(); // Populate the table
-    });
-</script>
+    </script>
+</body>
+</html>
