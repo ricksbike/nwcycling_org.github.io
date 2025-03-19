@@ -116,7 +116,7 @@
         // Function to populate the table with data from the JSON file
         async function populateTable() {
             try {
-                const response = await fetch('ridesData.json'); // Fetch the JSON file
+                const response = await fetch('/data/ridesData.json'); // Fetch the JSON file
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
