@@ -27,16 +27,16 @@
             white-space: normal;  /* Make sure the text can wrap onto new lines */
             text-align: center;   /* Center-align text for better look */
         }
-/* Override alignment for the Ride Name column */
-th:nth-child(1), td:nth-child(1) {
-    text-align: left; /* Align text to the left */
-}
 
+        /* Override alignment for the Ride Name column */
+        th:nth-child(1), td:nth-child(1) {
+        text-align: left; /* Align text to the left */
+}
         /* Center-align text for specific columns */
-th:nth-child(2), td:nth-child(2), /* Start Date */
-th:nth-child(3), td:nth-child(3), /* Registration Deadline */
-th:nth-child(8), td:nth-child(8)  /* Ride Status */ {
-    text-align: center;
+        th:nth-child(2), td:nth-child(2), /* Start Date */
+        th:nth-child(3), td:nth-child(3), /* Registration Deadline */
+        th:nth-child(8), td:nth-child(8)  /* Ride Status */ {
+        text-align: center;
 }
 
         /* Set specific column widths for each column */
@@ -58,15 +58,15 @@ th:nth-child(8), td:nth-child(8)  /* Ride Status */ {
     <table id="ridesTable">
         <thead>
             <tr>
-                <th scope="col">Ride Name</th>
-                <th scope="col">Start Date</th>
-                <th scope="col">Registration Deadline</th>
-                <th scope="col">Start Location</th>
-                <th scope="col">Ride Type</th>
-                <th scope="col">Longest Route (miles)</th>
-                <th scope="col">Elevation Gain (feet)</th>
-                <th scope="col">Ride Status</th>
-                <th scope="col">Organization</th>
+                <th scope="col" onclick="sortTable(0)">Ride Name</th>
+                <th scope="col" onclick="sortTable(1)">Start Date</th>
+                <th scope="col" onclick="sortTable(2)">Registration Deadline</th>
+                <th scope="col" onclick="sortTable(3)">Start Location</th>
+                <th scope="col" onclick="sortTable(4)">Ride Type</th>
+                <th scope="col" onclick="sortTable(5)">Longest Route (miles)</th>
+                <th scope="col" onclick="sortTable(6)">Elevation Gain (feet)</th>
+                <th scope="col" onclick="sortTable(7)">Ride Status</th>
+                <th scope="col" onclick="sortTable(8)">Organization</th>
             </tr>
         </thead>
         <tbody>
@@ -91,15 +91,15 @@ th:nth-child(8), td:nth-child(8)  /* Ride Status */ {
 
                 // Add table cells for each piece of data
                 row.innerHTML = `
-    <td><a href="${ride.rideNameLink}" target="_blank">${ride.rideName}</a></td>
-    <td>${ride.startDate}</td>
-    <td>${ride.registrationDeadline}</td>
-    <td>${ride.startLocation}</td>
-    <td>${ride.rideType}</td>
-    <td>${ride.longestRoute}</td>
-    <td>${ride.elevationGain}</td>
-    <td>${ride.rideStatus}</td>
-    <td><a href="${ride.organizationLink}" target="_blank">${ride.organization}</a></td>
+                <td><a href="${ride.rideNameLink}" target="_blank">${ride.rideName}</a></td>
+                <td>${ride.startDate}</td>
+                <td>${ride.registrationDeadline}</td>
+                <td>${ride.startLocation}</td>
+                <td>${ride.rideType}</td>
+                <td>${ride.longestRoute}</td>
+                <td>${ride.elevationGain}</td>
+                <td>${ride.rideStatus}</td>
+                <td><a href="${ride.organizationLink}" target="_blank">${ride.organization}</a></td>
 `;
 
                 // Append the row to the table body
@@ -131,6 +131,30 @@ th:nth-child(8), td:nth-child(8)  /* Ride Status */ {
         }
     }
 
+    // Function to sort the table by a specific column
+    function sortTable(columnIndex) {
+        const table = document.getElementById("ridesTable");
+        const tbody = table.tBodies[0];
+        const rows = Array.from(tbody.rows);
+
+        const isAscending = table.getAttribute("data-sort-direction") !== "asc";
+        table.setAttribute("data-sort-direction", isAscending ? "asc" : "desc");
+
+        rows.sort((a, b) => {
+            const cellA = a.cells[columnIndex].innerText.trim();
+            const cellB = b.cells[columnIndex].innerText.trim();
+
+            if (!isNaN(cellA) && !isNaN(cellB)) {
+                return isAscending ? cellA - cellB : cellB - cellA;
+            }
+
+            return isAscending
+                ? cellA.localeCompare(cellB)
+                : cellB.localeCompare(cellA);
+        });
+
+        rows.forEach(row => tbody.appendChild(row));
+    }
     // Use DOMContentLoaded event to make sure the script runs after the HTML content is loaded
     document.addEventListener("DOMContentLoaded", function () {
         populateTable(); // Populate the table
