@@ -39,13 +39,13 @@
             z-index: 1; /* Ensure the text is above the background image */
         }
 
-        /* Keyframes for the panning effect */
+
         @keyframes panImage {
             0% {
-                background-position: 0 50%; /* Start position */
+              transform: translateX(0);
             }
             100% {
-                background-position: 100% 50%; /* End position */
+             transform: translateX(-100px);
             }
         }
 
