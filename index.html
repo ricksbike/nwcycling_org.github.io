@@ -1,101 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>nwcycling.org </title>
+<script>
+    // Function to populate the table with data from the JSON file
+    async function populateTable() {
+        try {
+            const response = await fetch('ridesData.json'); // Fetch the JSON file
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const rides = await response.json(); // Parse the JSON data
 
-   <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
+            const tableBody = document.querySelector('#ridesTable tbody'); // Select the table body
+
+            rides.forEach(ride => {
+                const row = document.createElement('tr'); // Create a new row
+
+                // Add table cells for each piece of data
+                row.innerHTML = `
+                    <td><a href="${ride.organizationLink}">${ride.rideName}</a></td>
+                    <td>${ride.startDate}</td>
+                    <td>${ride.registrationDeadline}</td>
+                    <td>${ride.startLocation}</td>
+                    <td>${ride.rideType}</td>
+                    <td>${ride.longestRoute}</td>
+                    <td>${ride.elevationGain}</td>
+                    <td>${ride.rideStatus}</td>
+                    <td><a href="${ride.organizationLink}">${ride.organization}</a></td>
+                `;
+
+                // Append the row to the table body
+                tableBody.appendChild(row);
+            });
+
+            // Call the function to apply color changes based on status
+            changeColorBasedOnValue();
+        } catch (error) {
+            console.error("Error loading table data:", error);
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            padding: 10px;
-            border: 1px solid #ddd;
-            text-align: left;
-        }
-        th {
-            background-color: #d3d3d3;
-            height: 100px; /* Set the height of the table header */
-            word-wrap: break-word; /* Allow wrapping of text inside th */
-            white-space: normal;  /* Make sure the text can wrap onto new lines */
-            text-align: center;   /* Center-align text for better look */
-        }
+    }
 
-        /* Set specific column widths for each column */
-        th:nth-child(1), td:nth-child(1) { width: 14%; }  /* Ride Name */
-        th:nth-child(2), td:nth-child(2) { width: 8%; }  /* Date */
-        th:nth-child(3), td:nth-child(3) { width: 8%; }  /* Deadline */
-        th:nth-child(4), td:nth-child(4) { width: 12%; }  /* Location */
-        th:nth-child(5), td:nth-child(5) { width: 8%; }  /* Type */
-        th:nth-child(6), td:nth-child(6) { width: 8%; }  /* Longest Route  */
-        th:nth-child(7), td:nth-child(7) { width: 8%; }  /* Elevation Gain */
-        th:nth-child(8), td:nth-child(8) { width: 10%; }  /* Status */
-        th:nth-child(9), td:nth-child(9) { width: 14%; }  /* Organization */
-    </style>
-</head>
-<body>
-    <h1>Welcome to nwcycling.org</h1>
-<p> Clubs and organizations of the Pacific Northwest have gotten together to list their rides in a central location for riders.</p>    
-    <h2>Organized Rides</h2>
-    <table>
-        <tr>
-            <th>Ride Name</th>
-            <th>Start Date</th>
-            <th>Registration Deadline</th>
-            <th>Start Location</th>
-            <th>Ride Type</th>
-            <th>Longest Route (miles)</th>
-            <th>Elevation Gain (feet)</th>
-            <th>Ride Status</th>
-            <th>Organization</th>   
-        </tr>
-        <tr>
-            <td><a href="https://redmondcycling.club/RAMROD">RAMROD</a></td>
-            <td>July 31, 2025 </td>
-            <td>March 25, 2025</td>
-            <td>Enumclaw, Washington</td>
-            <td>Road</td>
-            <td>150</td>
-            <td>10,000</td>
-            <td>Confirmed</td>
-            <td><a href="https://redmondcycling.club/RAMROD">Redmond Cycling Club</a></td>
-        </tr>
+    // Function to change color of specific table entries based on text content
+    function changeColorBasedOnValue() {
+        var rows = document.querySelectorAll("#ridesTable tr"); // Select all table rows
 
-    </table>
-
-    <script>
-        // Function to change color of specific table entries based on text content
-        function changeColorBasedOnValue() {
-            var rows = document.querySelectorAll("#ridesTable tr"); // Select all table rows
-
-            // Loop through each row (skip the header row)
-            for (var i = 1; i < rows.length; i++) {
-                var cells = rows[i].getElementsByTagName("td");
-
-                // Loop through each cell in the row
-                for (var j = 0; j < cells.length; j++) {
-                    // Check if the value in the "Status" column is "Confirmed"
-                    if (cells[j].innerText === "Confirmed") {
-                        // Change background color to green for "Confirmed" status
-                        cells[j].style.backgroundColor = "lightgreen"; // You can customize this color
-                    }
-                    if (cells[j].innerText === "Planned") {
-                        // Change background color to green for "Confirmed" status
-                        cells[j].style.backgroundColor = "yellow"; // You can customize this color
-                    }
+        // Loop through each row (skip the header row)
+        for (var i = 1; i < rows.length; i++) {
+            var statusCell = rows[i].getElementsByTagName("td")[7]; // Target the "Status" column (index 7)
+            if (statusCell) {
+                if (statusCell.innerText === "Confirmed") {
+                    statusCell.style.backgroundColor = "lightgreen"; // Customize this color
+                }
+                if (statusCell.innerText === "Planned") {
+                    statusCell.style.backgroundColor = "yellow"; // Customize this color
                 }
             }
         }
+    }
 
-        // Call the function to apply the changes after the page loads
-        window.onload = changeColorBasedOnValue;
-    </script>
-</body>
-</html>
+    // Use DOMContentLoaded event to make sure the script runs after the HTML content is loaded
+    document.addEventListener("DOMContentLoaded", function () {
+        populateTable(); // Populate the table
+    });
+</script>
