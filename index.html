@@ -28,14 +28,14 @@
 
         .bannerText {
             position: absolute; /* Position the text absolutely within the container */
-            top: 50%; /* Center vertically */
-            left: 50%; /* Center horizontally */
-            transform: translate(-50%, -50%); /* Adjust for perfect centering */
-            color: white; /* Set text color to white for contrast */
+            bottom: 10px; /* Position the text 10px from the bottom */
+            left: 10px; /* Position the text 10px from the left */
+            transform: none; /* Remove centering transform */
+            color: #BF5700; /* Set text color to white for contrast */
             font-size: 2rem; /* Adjust font size as needed */
             font-weight: bold; /* Make the text bold */
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add a shadow for better readability */
-            text-align: center; /* Center-align the text */
+            text-align: left; /* Align text to the left */
             z-index: 1; /* Ensure the text is above the background image */
         }
 
@@ -73,7 +73,7 @@
             padding: 3px 5px; /* Reduce padding to make the headers shorter */
             word-wrap: break-word; /* Allow wrapping of text inside headers */
             white-space: normal; /* Ensure text can wrap onto new lines */
-            text-align: center; /* Center-align text for better look */
+            text-align: center; /* Center-align the text */
         }
 
         /* Styling for table data cells */
