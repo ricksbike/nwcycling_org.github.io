@@ -22,8 +22,7 @@
             background-image: url('images/banner.jpg'); /* Set the image as a background */
             background-size: cover; /* Ensure the image covers the entire area */
             background-repeat: no-repeat; /* Prevent the image from repeating */
-            background-position: 0 50%; /* Start position */
-            animation: panImage 10s infinite linear; /* Apply animation to the background */
+            background-position: 0 50%; /* Keep the background static */
         }
 
         .bannerText {
@@ -37,16 +36,6 @@
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add a shadow for better readability */
             text-align: left; /* Align text to the left */
             z-index: 1; /* Ensure the text is above the background image */
-        }
-
-        /* Keyframes for the panning effect */
-        @keyframes panImage {
-            0% {
-                background-position: 0 50%; /* Start position */
-            }
-            100% {
-                background-position: 100% 50%; /* End position */
-            }
         }
 
         /* Table styling */
@@ -109,7 +98,7 @@
 <body>
     <!-- Top banner image -->
     <div id="topImage">
-        <div class="bannerText">Welcome to nwycling.org</div>
+        <div class="bannerText">Welcome to nwycyling.org</div>
     </div>
 
     <!-- Main heading -->
