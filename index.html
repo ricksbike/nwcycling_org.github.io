@@ -172,9 +172,9 @@
 
         // Function to sort the table by a specific column
         function sortTable(columnIndex) {
-            const table = document.getElementById("ridesTable");
-            const tbody = table.tBodies[0];
-            const rows = Array.from(tbody.rows);
+            const table = document.getElementById("ridesTable"); // Get the table element
+            const tbody = table.tBodies[0]; // Get the table body
+            const rows = Array.from(tbody.rows); // Convert rows to an array for sorting
 
             // Determine the sort direction (ascending or descending)
             const isAscending = table.getAttribute("data-sort-direction") !== "asc";
@@ -188,6 +188,13 @@
                 // Handle numeric sorting
                 if (!isNaN(cellA) && !isNaN(cellB)) {
                     return isAscending ? cellA - cellB : cellB - cellA;
+                }
+
+                // Handle date sorting (if applicable)
+                if (Date.parse(cellA) && Date.parse(cellB)) {
+                    return isAscending
+                        ? new Date(cellA) - new Date(cellB)
+                        : new Date(cellB) - new Date(cellA);
                 }
 
                 // Handle string sorting
