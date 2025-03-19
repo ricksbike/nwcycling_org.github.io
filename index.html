@@ -23,7 +23,7 @@
             background-size: cover; /* Ensure the image covers the entire area */
             background-repeat: no-repeat; /* Prevent the image from repeating */
             background-position: 0 50%; /* Start position */
-            animation: panImage 10s infinite linear; /* Apply animation to the background */
+            animation: panImage 10s infinite linear; /* Apply animation */
         }
 
         .bannerText {
@@ -31,7 +31,7 @@
             bottom: 10px; /* Position the text 10px from the bottom */
             left: 10px; /* Position the text 10px from the left */
             transform: none; /* Remove centering transform */
-            color: #BF5700; /* Set text color  */
+            color: #BF5700; /* Set text color to white for contrast */
             font-size: 2rem; /* Adjust font size as needed */
             font-weight: bold; /* Make the text bold */
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add a shadow for better readability */
@@ -39,13 +39,12 @@
             z-index: 1; /* Ensure the text is above the background image */
         }
 
-        /* Keyframes for the panning effect */
         @keyframes panImage {
             0% {
-                background-position: 0 50%; /* Start position */
+              transform: translateX(0);
             }
             100% {
-                background-position: 100% 50%; /* End position */
+             transform: translateX(-100px);
             }
         }
 
@@ -109,11 +108,12 @@
 <body>
     <!-- Top banner image -->
     <div id="topImage">
-        <div class="bannerText">Welcome to NW Cycling</div>
+        <div class="bannerText">Welcome to nwycling.org</div>
     </div>
 
     <!-- Main heading -->
-    <h1>Welcome to nwcycling.org</h1>
+   
+    <!-- Sub heading -->
 
     <!-- Introductory paragraph -->
     <p>Clubs and organizations of the Pacific Northwest have gotten together to list their rides in a central location for riders.</p>
