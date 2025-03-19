@@ -21,7 +21,7 @@
         "rideType": "Tarmac",
         "longestRoute": 151,
         "elevationGain": 10001,
-        "rideStatus": "PLanned",
+        "rideStatus": "Planned",
         "organization": "Redmond Cycling Club",
         "organizationLink": "https://redmondcycling.club"
     }
