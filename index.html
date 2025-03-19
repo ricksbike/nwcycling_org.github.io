@@ -18,8 +18,21 @@
         #topImage {
             width: 100%; /* Full width */
             height: 33vh; /* 33% of the viewport height */
-            object-fit: cover; /* Scale the image without distortion */
-            display: block;
+            background-image: url('images/banner.jpg'); /* Set the image as a background */
+            background-size: cover; /* Ensure the image covers the entire area */
+            background-repeat: no-repeat; /* Prevent the image from repeating */
+            background-position: 0 50%; /* Start position */
+            animation: panImage 10s infinite linear; /* Apply animation */
+        }
+
+        /* Keyframes for the panning effect */
+        @keyframes panImage {
+            0% {
+                background-position: 0 50%; /* Start position */
+            }
+            100% {
+                background-position: 100% 50%; /* End position */
+            }
         }
 
         /* Table styling */
