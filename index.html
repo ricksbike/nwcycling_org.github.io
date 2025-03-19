@@ -27,16 +27,27 @@
             white-space: normal;  /* Make sure the text can wrap onto new lines */
             text-align: center;   /* Center-align text for better look */
         }
+/* Override alignment for the Ride Name column */
+th:nth-child(1), td:nth-child(1) {
+    text-align: left; /* Align text to the left */
+}
+
+        /* Center-align text for specific columns */
+th:nth-child(2), td:nth-child(2), /* Start Date */
+th:nth-child(3), td:nth-child(3), /* Registration Deadline */
+th:nth-child(8), td:nth-child(8)  /* Ride Status */ {
+    text-align: center;
+}
 
         /* Set specific column widths for each column */
         th:nth-child(1), td:nth-child(1) { width: 14%; }  /* Ride Name */
-        th:nth-child(2), td:nth-child(2) { width: 8%; }  /* Date */
-        th:nth-child(3), td:nth-child(3) { width: 8%; }  /* Deadline */
-        th:nth-child(4), td:nth-child(4) { width: 12%; }  /* Location */
-        th:nth-child(5), td:nth-child(5) { width: 8%; }  /* Type */
+        th:nth-child(2), td:nth-child(2) { width: 8%; }  /* Start Date */
+        th:nth-child(3), td:nth-child(3) { width: 8%; }  /* Registratio Deadline */
+        th:nth-child(4), td:nth-child(4) { width: 12%; }  /* Start Location */
+        th:nth-child(5), td:nth-child(5) { width: 8%; }  /* Ride Type */
         th:nth-child(6), td:nth-child(6) { width: 8%; }  /* Longest Route  */
         th:nth-child(7), td:nth-child(7) { width: 8%; }  /* Elevation Gain */
-        th:nth-child(8), td:nth-child(8) { width: 10%; }  /* Status */
+        th:nth-child(8), td:nth-child(8) { width: 10%; }  /* Ride Status */
         th:nth-child(9), td:nth-child(9) { width: 14%; }  /* Organization */
     </style>
 </head>
