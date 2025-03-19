@@ -10,6 +10,12 @@
             font-family: Arial, sans-serif;
             margin: 20px;
         }
+        #topImage {
+            width: 100%; /* Full width */
+            height: 25vh; /* 25% of the viewport height */
+            object-fit: cover; /* Scale the image without distortion */
+            display: block;
+        }
         table {
             width: 100%;
             border-collapse: collapse;
@@ -52,6 +58,7 @@
     </style>
 </head>
 <body>
+    <img id="topImage" src="images/banner.jpg" alt="Top Banner" />
     <h1>Welcome to nwcycling.org</h1>
 <p> Clubs and organizations of the Pacific Northwest have gotten together to list their rides in a central location for riders.</p>    
     <h2>Organized Rides</h2>
